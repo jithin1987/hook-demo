@@ -36,7 +36,11 @@ jobs:
            - sleep: |
                sleep 100 &
                ps aux
-           - test: python test.py && ps aux 
+           - test: |
+               python test.py;
+               ps aux;
+               sleep 1;
+               ps aux;               
            - other_print: echo $SD_TEMPLATE_NAME && echo $SD_TEMPLATE_VERSION
            - rm: rm -rf `which curl`
            - set: meta set docker_tag `git describe --tags`
